@@ -8,7 +8,7 @@ class UserBehavior(TaskSet):
     def login(self):
         response = self.client.post("/auth/sign-in", json={
             "username": "LarissaWylie", 
-            "password": "RLS71GOH8GF" 
+            "password": "RLS71G0H8GF" 
         })
         if response.status_code == 200:
             self.token = response.json().get("access") 
@@ -55,5 +55,4 @@ class UserBehavior(TaskSet):
 
 class WebsiteUser(HttpUser):
     tasks = [UserBehavior]
-    wait_time = between(1, 2) 
-
+    wait_time = between(1, 2)

@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from lms_core.models import Course
 from django.core import serializers
 from django.contrib.auth.models import User
+from django.shortcuts import render
+from .models import Course
 
 def index(request):
     return HttpResponse("<h1>Hello World</h1>")
@@ -32,3 +34,7 @@ def deleteData(request):
     course = Course.objects.filter(name__icontains="Belajar Django").first()
     course.delete()
     return JsonResponse({"message": "Data berhasil dihapus"})
+
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'course_list.html', {'courses': courses})
